@@ -1,5 +1,18 @@
+import java.math.BigInteger
 import kotlin.reflect.KProperty
 import kotlin.system.measureTimeMillis
+
+tailrec fun factorialTailRec(n: Int, result: BigInteger = 1.toBigInteger()): BigInteger =
+    if (n <= 0) result else factorialTailRec(n - 1, result * n.toBigInteger())
+
+println(factorialTailRec(5)) //120
+
+fun factorialIterative(n: Int) =
+    (1..n).fold(BigInteger("1")) { product, e ->
+        product * e.toBigInteger()
+    }
+
+println(factorialIterative(5)) //120
 
 fun sumOfElements(elements: List<Int>, index: Int = elements.size - 1): Int =
     if (index < 0) 0 else elements[index] + sumOfElements(elements, index - 1)
